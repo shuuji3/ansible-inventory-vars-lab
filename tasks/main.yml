@@ -13,10 +13,13 @@
 
 - name: Print all host_internal_ip for each alice nodes
   debug:
-    msg: "[{{ item }}] 'hostvars[{{ item }}].host_internal_ip' = '{{ hostvars[item].host_internal_ip }}'"
+    msg: "
+    [{{ item }}] 'hostvars[{{ item }}].host_internal_ip' = '{{ hostvars[item].host_internal_ip }}'
+    [{{ item }}] 'hostvars[{{ item }}].cluster_name' = '{{ hostvars[item].cluster_name }}'
+    "
   with_items:
     - "{{ groups['alice'] }}"
-
+ 
 - name: Place dhcpd.conf config filled with variables
   template:
     src: dhcpd.conf.j2

@@ -1,0 +1,4 @@
+---
+host_internal_ip: 192.168.0.102
+host_global_ip: 130.158.78.102
+host_internal_nic_mac_address: 00:11:22:33:44:02
