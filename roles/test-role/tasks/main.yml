@@ -23,4 +23,4 @@
 - name: Place dhcpd.conf config filled with variables
   template:
     src: dhcpd.conf.j2
-    dest: /tmp/dhcpd.conf
+    dest: results/dhcpd.conf

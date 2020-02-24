@@ -6,10 +6,6 @@
 #
 # DHCP Server Configuration file.
 #
-
-#
-# IP Address hint
-
 allow booting;
 allow bootp;
 ignore client-updates;
@@ -25,23 +21,23 @@ log-facility local6;
 
 # Group the PXE bootable hosts together
 subnet 192.168.0.0 netmask 255.255.255.0 {
-range 192.168.0.0 192.168.0.255;
-option nis-domain		"example.com";
-option domain-name		"internal.example.com";
-option domain-name-servers	{{ name_server_ip }};
-option ntp-servers		{{ name_server_ip }};
-option time-offset		32400;
+  range 192.168.0.0 192.168.0.255;
+  option nis-domain		"example.com";
+  option domain-name		"internal.example.com";
+  option domain-name-servers	{{ name_server_ip }};
+  option ntp-servers		{{ name_server_ip }};
+  option time-offset		32400;
 }
 
 #
 # Group the Alice Cluster PXE boot
 #
 group {
-# next tftp.example.com tftpserver
-next-server {{ tftp_server_ip }};
-filename "/alice/pxelinux.0";
+  # next tftp.example.com tftpserver
+  next-server {{ tftp_server_ip }};
+  filename "/alice/pxelinux.0";
 
 {% for alice_hostname in groups['alice'] %}
-host {{ alice_hostname }} { hardware ethernet {{ hostvars[alice_hostname].host_internal_nic_mac_address }}; option host-name "{{ alice_hostname }}"; }
+  host {{ alice_hostname }} { hardware ethernet {{ hostvars[alice_hostname].host_internal_nic_mac_address }}; option host-name "{{ alice_hostname }}"; }
 {% endfor %}
 }
