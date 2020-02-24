@@ -1,4 +1,4 @@
-> ansible-playbook -i ansible-inventory-vars-lab/hosts ansible-inventory-vars-lab/test-playbook.yml -vv; cat /tmp/dhcpd.conf
+> ansible-playbook -i hosts test-playbook.yml -vv
 ansible-playbook 2.9.5
   config file = /Users/shuuji/.ansible.cfg
   configured module search path = ['/Users/shuuji/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
@@ -8,7 +8,7 @@ ansible-playbook 2.9.5
 Using /Users/shuuji/.ansible.cfg as config file
 
 PLAYBOOK: test-playbook.yml **************************************************************************************
-1 plays in ansible-inventory-vars-lab/test-playbook.yml
+1 plays in test-playbook.yml
 
 PLAY [local] *****************************************************************************************************
 
@@ -20,14 +20,14 @@ https://docs.ansible.com/ansible/2.9/reference_appendices/interpreter_discovery.
 ok: [localhost]
 META: ran handlers
 
-TASK [ansible-inventory-vars-lab : Print inventory variable of localhost] ****************************************
-task path: /Users/shuuji/src/ansible-inventory-vars-lab/tasks/main.yml:2
+TASK [test-role : Print inventory variable of localhost] *********************************************************
+task path: /Users/shuuji/src/ansible-inventory-vars-lab/roles/test-role/tasks/main.yml:2
 ok: [localhost] => {
     "msg": "'host_internal_ip' = '192.168.0.1' / 'host_global_ip' = '130.158.78.1' / 'host_internal_nic_mac_address' = '12:34:56:78:9A:BC'"
 }
 
-TASK [ansible-inventory-vars-lab : Print hostnames belongs to the group 'alice'] *********************************
-task path: /Users/shuuji/src/ansible-inventory-vars-lab/tasks/main.yml:6
+TASK [test-role : Print hostnames belongs to the group 'alice'] **************************************************
+task path: /Users/shuuji/src/ansible-inventory-vars-lab/roles/test-role/tasks/main.yml:6
 ok: [localhost] => {
     "msg": [
         "alice01",
@@ -36,14 +36,14 @@ ok: [localhost] => {
     ]
 }
 
-TASK [ansible-inventory-vars-lab : Print alice01 inventory variables] ********************************************
-task path: /Users/shuuji/src/ansible-inventory-vars-lab/tasks/main.yml:10
+TASK [test-role : Print alice01 inventory variables] *************************************************************
+task path: /Users/shuuji/src/ansible-inventory-vars-lab/roles/test-role/tasks/main.yml:10
 ok: [localhost] => {
-    "msg": "'''hostvars['alice01']''' = '''{'cluster_name': 'omni-alice-cluster', 'inventory_file': '/Users/shuuji/src/ansible-inventory-vars-lab/hosts', 'inventory_dir': '/Users/shuuji/src/ansible-inventory-vars-lab', 'inventory_hostname': 'alice01', 'inventory_hostname_short': 'alice01', 'group_names': ['alice'], 'host_internal_ip': '192.168.0.101', 'host_global_ip': '130.158.78.101', 'host_internal_nic_mac_address': '00:11:22:33:44:01', 'ansible_facts': {}, 'playbook_dir': '/Users/shuuji/src/ansible-inventory-vars-lab', 'ansible_playbook_python': '/Users/shuuji/.pyenv/versions/3.6.0/bin/python3.6', 'groups': {'all': ['localhost', 'alice01', 'alice02', 'alice03'], 'ungrouped': [], 'local': ['localhost'], 'alice': ['alice01', 'alice02', 'alice03']}, 'omit': '__omit_place_holder__36f793283e3f8b2b5faa9805300e4999543b6833', 'ansible_version': {'string': '2.9.5', 'full': '2.9.5', 'major': 2, 'minor': 9, 'revision': 5}, 'ansible_check_mode': False, 'ansible_diff_mode': False, 'ansible_forks': 5, 'ansible_inventory_sources': ['/Users/shuuji/src/ansible-inventory-vars-lab/hosts'], 'ansible_skip_tags': [], 'ansible_run_tags': ['all'], 'ansible_verbosity': 2}'''"
+    "msg": "'''hostvars['alice01']''' = '''{'name_server_ip': '192.168.0.100', 'tftp_server_ip': '192.168.0.200', 'router_ip': '192.168.0.255', 'cluster_name': 'omni-alice-cluster', 'inventory_file': '/Users/shuuji/src/ansible-inventory-vars-lab/hosts', 'inventory_dir': '/Users/shuuji/src/ansible-inventory-vars-lab', 'inventory_hostname': 'alice01', 'inventory_hostname_short': 'alice01', 'group_names': ['alice'], 'host_internal_ip': '192.168.0.101', 'host_global_ip': '130.158.78.101', 'host_internal_nic_mac_address': '00:11:22:33:44:01', 'ansible_facts': {}, 'playbook_dir': '/Users/shuuji/src/ansible-inventory-vars-lab', 'ansible_playbook_python': '/Users/shuuji/.pyenv/versions/3.6.0/bin/python3.6', 'groups': {'all': ['localhost', 'alice01', 'alice02', 'alice03'], 'ungrouped': [], 'local': ['localhost'], 'alice': ['alice01', 'alice02', 'alice03']}, 'omit': '__omit_place_holder__55bc0c79a760dca0439257e9d84496d9a8f32ae8', 'ansible_version': {'string': '2.9.5', 'full': '2.9.5', 'major': 2, 'minor': 9, 'revision': 5}, 'ansible_check_mode': False, 'ansible_diff_mode': False, 'ansible_forks': 5, 'ansible_inventory_sources': ['/Users/shuuji/src/ansible-inventory-vars-lab/hosts'], 'ansible_skip_tags': [], 'ansible_run_tags': ['all'], 'ansible_verbosity': 2}'''"
 }
 
-TASK [ansible-inventory-vars-lab : Print all host_internal_ip for each alice nodes] ******************************
-task path: /Users/shuuji/src/ansible-inventory-vars-lab/tasks/main.yml:14
+TASK [test-role : Print all host_internal_ip for each alice nodes] ***********************************************
+task path: /Users/shuuji/src/ansible-inventory-vars-lab/roles/test-role/tasks/main.yml:14
 ok: [localhost] => (item=alice01) => {
     "msg": " [alice01] 'hostvars[alice01].host_internal_ip' = '192.168.0.101' [alice01] 'hostvars[alice01].cluster_name' = 'omni-alice-cluster' "
 }
@@ -54,11 +54,11 @@ ok: [localhost] => (item=alice03) => {
     "msg": " [alice03] 'hostvars[alice03].host_internal_ip' = '192.168.0.103' [alice03] 'hostvars[alice03].cluster_name' = 'omni-alice-cluster' "
 }
 
-TASK [ansible-inventory-vars-lab : Place dhcpd.conf config filled with variables] ********************************
-task path: /Users/shuuji/src/ansible-inventory-vars-lab/tasks/main.yml:23
-ok: [localhost] => {"changed": false, "checksum": "1156a33456f29bd58064df97d8562706c99850fa", "dest": "/tmp/dhcpd.conf", "gid": 20, "group": "staff", "mode": "0644", "owner": "shuuji", "path": "/tmp/dhcpd.conf", "size": 1143, "state": "file", "uid": 501}
+TASK [test-role : Place dhcpd.conf config filled with variables] *************************************************
+task path: /Users/shuuji/src/ansible-inventory-vars-lab/roles/test-role/tasks/main.yml:23
+changed: [localhost] => {"changed": true, "checksum": "5b0ca5522d0b0368f47cce9ab3d0619a6cf7e1bc", "dest": "results/dhcpd.conf", "gid": 20, "group": "staff", "md5sum": "c1eecca9b7aef68b69f682ca3fe2252a", "mode": "0644", "owner": "shuuji", "size": 1145, "src": "/tmp/ansible-shuuji/ansible-tmp-1582530865.295346-130989571271023/source", "state": "file", "uid": 501}
 META: ran handlers
 META: ran handlers
 
 PLAY RECAP *******************************************************************************************************
-localhost                  : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+localhost                  : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
