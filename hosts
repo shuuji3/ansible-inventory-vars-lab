@@ -1,0 +1,7 @@
+[local]
+localhost host_internal_ip=192.168.0.1 host_global_ip=130.158.78.1 host_internal_nic_mac_address=12:34:56:78:9A:BC
+
+[alice]
+alice01 host_internal_ip=192.168.0.101 host_global_ip=130.158.78.101 host_internal_nic_mac_address=00:11:22:33:44:01
+alice02 host_internal_ip=192.168.0.102 host_global_ip=130.158.78.102 host_internal_nic_mac_address=00:11:22:33:44:02
+alice03 host_internal_ip=192.168.0.103 host_global_ip=130.158.78.103 host_internal_nic_mac_address=00:11:22:33:44:03

@@ -1,2 +1,23 @@
 ---
-# tasks file for ansible-inventory-variable-experiment
+- name: Print inventory variable of localhost
+  debug:
+    msg: "'host_internal_ip' = '{{ host_internal_ip }}' / 'host_global_ip' = '{{ host_global_ip }}' / 'host_internal_nic_mac_address' = '{{ host_internal_nic_mac_address }}'"
+
+- name: Print hostnames belongs to the group 'alice'
+  debug:
+    msg: "{{ groups['alice'] }}"
+
+- name: Print alice01 inventory variables
+  debug:
+    msg: "'''hostvars['alice01']''' = '''{{ hostvars['alice01'] }}'''"
+
+- name: Print all host_internal_ip for each alice nodes
+  debug:
+    msg: "[{{ item }}] 'hostvars[{{ item }}].host_internal_ip' = '{{ hostvars[item].host_internal_ip }}'"
+  with_items:
+    - "{{ groups['alice'] }}"
+
+- name: Place dhcpd.conf config filled with variables
+  template:
+    src: dhcpd.conf.j2
+    dest: /tmp/dhcpd.conf
