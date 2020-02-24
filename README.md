@@ -5,8 +5,7 @@
 ## How to play this role
 
 ```shell
-git clone https://github.com/shuuji3/ansible-inventory-vars-lab
-ansible-playbook -i ansible-inventory-vars-lab/hosts ansible-inventory-vars-lab/test-playbook.yml -vv
+ansible-playbook -i hosts test-playbook.yml -vv
 ```
 
 ## Results
