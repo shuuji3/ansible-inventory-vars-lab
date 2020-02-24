@@ -12,4 +12,4 @@ ansible-playbook -i ansible-inventory-vars-lab/hosts ansible-inventory-vars-lab/
 ## Results
 
 - [Execution log](results/run-ansible-playbook.log)
-- This play creates `/tmp/dhcpd.conf` with [this content](results/dhcpd.conf).
+- This play creates `results/dhcpd.conf` with [this content](results/dhcpd.conf).
