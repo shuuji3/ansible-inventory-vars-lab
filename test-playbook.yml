@@ -2,4 +2,4 @@
 - hosts: local
   connection: local
   roles:
-    - ansible-inventory-variable-experiment
+    - ansible-inventory-vars-lab
