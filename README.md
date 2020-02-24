@@ -9,6 +9,7 @@ git clone https://github.com/shuuji3/ansible-inventory-vars-lab
 ansible-playbook -i ansible-inventory-vars-lab/hosts ansible-inventory-vars-lab/test-playbook.yml -vv
 ```
 
-[Execution log](results/run-ansible-playbook.log)
+## Results
 
-This creates `/tmp/dhcpd.conf` with [this content](resulets/dhcpd.conf).
+- [Execution log](results/run-ansible-playbook.log)
+- This play creates `/tmp/dhcpd.conf` with [this content](results/dhcpd.conf).
